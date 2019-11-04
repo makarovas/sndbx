@@ -1,12 +1,12 @@
-import React from 'react';
-import './index.css';
+// import React from 'react';
+// import './index.css';
 
-function App() {
-  return (
-    <div className="App">
-      hello
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div>
+//       ping pong
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
