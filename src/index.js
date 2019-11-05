@@ -1,71 +1,48 @@
-import { createStore } from 'redux';
 
+import { inc, dec, rnd, rst } from './actions';
+import { store, reducer } from './reducer';
+// import { bindActionCreators } from './hoc';
+import { createStore, bindActionCreators } from 'redux';
 
-const reducer = (state = 0, action) => {
+const { dispatch, subscribe, getState } = store;
 
-	switch (action.type)
-	{
-		case 'INC':
-			return state + 1;
-
-		case 'DEC':
-			return state - 1;
-		case 'RND':
-			return state + action.payload;
-		case 'RST':
-			return 0
-		default:
-			return state;
-	}
-};
-
-const store = createStore(reducer);
-
-const inc = () => ({ type: 'INC' });
-const dec = () => ({ type: 'DEC' });
-const rnd = () => {
-	const payload = Math.floor(Math.random() * 10);
-	return { type: 'RND', payload }
-};
-const rst = () => ({ type: 'RST' });
 
 const elemInc = document.getElementById('inc');
+const elemDec = document.getElementById('dec');
+const elemRst = document.getElementById('rst');
+const elemRnd = document.getElementById('rnd');
+
+const incDispatch = bindActionCreators(inc, dispatch);
+const decDispatch = bindActionCreators(dec, dispatch);
+const rndDispatch = bindActionCreators(rnd, dispatch);
+const rstDispatch = bindActionCreators(rst, dispatch);
+
 if (elemInc)
 {
-	elemInc.addEventListener('click', () => {
-		store.dispatch(inc());
-	});
+	elemDec.addEventListener('click', incDispatch)
 }
 
-const elemDec = document.getElementById('dec');
+
 if (elemDec)
 {
-	elemDec.addEventListener('click', () => {
-		store.dispatch(dec());
-	});
+	elemDec.addEventListener('click', decDispatch)
 }
 
-const elemRnd = document.getElementById('rnd');
+
 if (elemRnd)
 {
-
-	elemRnd.addEventListener('click', () => {
-		store.dispatch(rnd());
-	});
+	elemRnd.addEventListener('click', rndDispatch)
 }
 
-const elemRst = document.getElementById('rst');
 if (elemRst)
 {
-	elemRst.addEventListener('click', () => {
-		store.dispatch(rst());
-	})
+	elemRst.addEventListener('click', rstDispatch)
 }
 
 const update = () => {
 	document
 		.getElementById('counter')
-		.innerHTML = store.getState();
+		.innerHTML = getState();
 };
 
-store.subscribe(update);
+subscribe(update);
