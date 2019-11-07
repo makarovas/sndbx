@@ -4,8 +4,6 @@ import { inc, dec, rnd, rst } from './actions'
 import { bindActionCreators } from 'redux';
 import * as actions from './actions';
 
-
-
 const Counter = ({ counter, inc, dec, rnd, rst }) => {
 	return (
 		<div className="jubmotron">
@@ -25,14 +23,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	const { inc, dec, rnd, rst } = bindActionCreators(actions, dispatch);
-	return {
-		inc,
-		dec,
-		rnd,
-		rst
-	}
+	return bindActionCreators(actions, dispatch);
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter); 
