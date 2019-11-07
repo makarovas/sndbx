@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { inc, dec, rnd, rst } from './actions'
+import { bindActionCreators } from 'redux';
+import * as actions from './actions';
+
+
 
 const Counter = ({ counter, inc, dec, rnd, rst }) => {
 	return (
@@ -21,11 +25,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+	const { inc, dec, rnd, rst } = bindActionCreators(actions, dispatch);
 	return {
-		inc: () => dispatch(inc()),
-		dec: () => dispatch(dec()),
-		rnd: () => dispatch(rnd()),
-		rst: () => dispatch(rst()),
+		inc,
+		dec,
+		rnd,
+		rst
 	}
 }
 
