@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { inc, dec, rnd, rst } from './actions'
 
 const Counter = ({ counter, inc, dec, rnd, rst }) => {
 	return (
@@ -22,10 +22,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		inc: () => dispatch({ type: 'INC' }),
-		dec: () => dispatch({ type: 'DEC' }),
-		rnd: () => dispatch({ type: 'RND' }),
-		rst: () => dispatch({ type: 'RST' }),
+		inc: () => dispatch(inc()),
+		dec: () => dispatch(dec()),
+		rnd: () => dispatch(rnd()),
+		rst: () => dispatch(rst()),
 	}
 }
 
