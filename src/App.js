@@ -1,12 +1,10 @@
-// import React from 'react';
-// import './index.css';
+import React from 'react';
+import Counter from './counter';
 
-// function App() {
-//   return (
-//     <div>
-//       ping pong
-//     </div>
-//   );
-// }
+const App = () => {
+	return (
+		<Counter />
+	);
+}
 
-// export default App;
+export { App };
